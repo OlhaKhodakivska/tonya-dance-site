@@ -4,6 +4,7 @@ import { resolve } from 'path';
 export default defineConfig({
     base: '/tonya-dance-site/',
     build: {
+        outDir: 'docs',
         rollupOptions: {
             input: {
                 main: resolve(__dirname, 'index.html'),
