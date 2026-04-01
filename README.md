@@ -2,7 +2,7 @@
 
 A sleek, immersive, and responsive landing page for Tonya, a personal online trainer specializing in Pole Dance, Tango, and Body Balance.
 
-[🌐 **Live Demo**](https://olhakhodakivska.github.io/tonya-musemotion/)
+[🌐 **Live Demo**][(https://olhakhodakivska.github.io/tonya-dance-site/))]
 
 ---
 
