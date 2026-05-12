@@ -1,129 +1,189 @@
-# Tonya Musemotion | Dance & Movement ⚡💃
+# 💃 Tonya Musemotion | Dance & Movement ⚡
 
-A sleek, immersive, and responsive landing page for Tonya, a personal online trainer specializing in Pole Dance, Tango, and Body Balance.
+A sleek, immersive, and responsive landing page for **Tonya**, a personal online trainer specializing in **Pole Dance, Tango, and Body Balance**.
 
-[🌐 **Live Demo**][(https://olhakhodakivska.github.io/tonya-dance-site/))]
+---
+
+## 🌐 Live Demo
+
+👉 [View Website](https://olhakhodakivska.github.io/tonya-dance-site/)
 
 ---
 
 ## 🚀 About The Project
 
-"Tonya Musemotion" is a modern single-page website designed to capture the energy and elegance of physical movement. The core philosophy—where art meets physical training—is embodied through a dynamic user experience and high-end visual aesthetics.
+**Tonya Musemotion** is a modern single-page website designed to capture the energy, rhythm, and elegance of movement.
 
-This repository serves as a practical example of building a fast, component-free frontend using modern tooling (`Vite`), utility classes (`Tailwind CSS`), and vanilla JavaScript.
+The project focuses on combining visual storytelling with a fast, component-free frontend built using modern tooling.
 
-### Key Features:
+### Key Goals:
+- Express motion through visual hierarchy
+- Build a performant static landing page
+- Practice modern UI composition without frameworks
 
-- **Dark & Energetic Theme:** A sophisticated dark mode aesthetic using deep black backgrounds (`#000`) contrasted with a vibrant brand color (`#FF4500`).
-- **Vertical Visual Experience:** High-impact showcase of vertical "action" shots with elegant hover effects and gradient overlays.
-- **Responsive Typography:** Wide tracking, uppercase letters, and italic accents create a dynamic, sporty, and artistic mood.
-- **Fully Responsive:** Seamless experience across all device sizes, from mobile phones to large desktops.
-- **Interactive Components:** Custom-built modal windows for booking and reviews, and a touch-friendly carousel.
+---
+
+## ✨ Features
+
+- 🌙 **Dark cinematic design** with high contrast accent color `#FF4500`
+- 🧭 **Vertical storytelling layout** focused on movement photography
+- 📱 **Fully responsive design** (mobile → desktop)
+- 🎭 **Hover animations & gradients** for interactive feel
+- 🖼️ **High-impact visual sections** with optimized images
+- 🎯 **Custom modal windows** (booking & reviews)
+- 👆 **Touch-friendly carousel slider**
+- ⚡ **Fast loading & optimized assets**
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Vite** - Next Generation Frontend Tooling for rapid development.
-- **Tailwind CSS** - A utility-first CSS framework for efficient styling.
-- **Vanilla JavaScript (ES6)** - Used for modal logic, date handling, and touch-swipe mechanics.
-- **HTML5 & CSS3** - Semantic structure and custom animations.
+| Technology | Purpose |
+|---|---|
+| Vite | Fast build tool & dev server |
+| Tailwind CSS | Utility-first styling |
+| Vanilla JavaScript (ES6+) | UI logic & interactions |
+| HTML5 / CSS3 | Structure & base styling |
 
 ---
 
 ## 📸 Screenshots
 
-### Header & Hero Section
+### 🏠 Hero Section
 
-_A striking introduction featuring bold typography and a cinematic background blend._
+_Main landing view with cinematic typography and background composition._
 
-![Header Section](./public/screenshots/hero_.png)
+<img width="1863" height="1073" alt="Screenshot from 2026-05-12 11-32-33" src="https://github.com/user-attachments/assets/1f4b262b-e6b9-428a-a9d1-18c7ec4c7a95" />
 
-### Training Directions & Special Formats
-
-_A clean, high-impact grid showcasing discipline-specific photography in a professional 3-column layout._
-
-![Classes Section](./public/screenshots/classes_.png)
-
-### Student Reviews & Footer
-
-_A custom, lightweight testimonial slider with interactive navigation, followed by a compliant footer._
-
-![Reviews & Footer Section](./public/screenshots/review_footer.png)
 
 ---
 
-## 💫 Detailed Project Development History
+### 💪 Classes / Training Directions
 
-We undertook a comprehensive redesign to transform the initial concept into a polished, compliant, and visually superior product. The work involved:
+_Grid-based layout showcasing dance disciplines with vertical photography._
 
-### 1. Visual Overhaul (Vertical Shift)
+<img width="1768" height="975" alt="Screenshot from 2026-05-12 11-32-56" src="https://github.com/user-attachments/assets/7186d6a9-3481-4e10-b721-7ee7674f1fff" />
 
-- **Grid Transformation:** Converted the "Training Directions" from an 8-card grid into a streamlined, professional 3-column grid (`md:grid-cols-3`).
-- **縦長 (Tatenaga) Layout:** Redesigned cards to prioritize high-quality **vertical photography** (aspect ratio `2/3`). This maximizes the display of movement and grace.
-- **Hover Effects:** Implemented a complex hover state including image scaling (`group-hover:scale-110`) and a conditional gradient overlay to maintain text readability.
 
-### 2. Layout & Spacing ("Air and Focus")
+---
 
-- **Special Formats:** Separated the "Special Formats" box from the main class grid. We transformed it into a dedicated, spacious horizontal layout (`mt-24 pt-12 flex-row`), giving it the breathing room it deserved and improving the visual flow.
-- **Typography Scale:** Standardized heading sizes (`text-4xl md:text-6xl`) to create a clear hierarchy.
+### ⭐ Reviews Section
 
-### 3. Mobile Experience Optimization
+_Testimonial slider with smooth navigation and lightweight interaction logic._
 
-- **Responsive Adjustments:** Finely tuned all spacing (`gap-10`, `px-6`), typography, and container sizes for seamless readability on narrow screens.
-- **Carousel Refinement:** Ensured the custom review slider remains lightweight and responsive, providing natural touch-swipe support on mobile.
+<img width="1348" height="709" alt="Screenshot from 2026-05-12 11-33-31" src="https://github.com/user-attachments/assets/4841ef36-f333-4e4c-a5ed-83587d19dfe5" />
 
-### 4. Legal Compliance (GDPR/DSGVO)
 
-- **Full Impressum & Datenschutz:** Wrote complete, юридично структуровані юридичні тексти specific for a business based in Berlin, Germany.
-- **Dynamic Date Logic:** Integrated a small JavaScript function (`document.getElementById('year').textContent = new Date().getFullYear()`) into all footers and legal pages to ensure the year is always current.
+---
+
+### 📱 Mobile View
+
+_Optimized responsive layout for smaller screens._
+
+<img width="415" height="919" alt="Screenshot from 2026-05-12 11-34-10" src="https://github.com/user-attachments/assets/5f0f4124-452e-4341-b926-a2f4b2c5bec2" />
+
+
+---
+
+## 🧠 Project Highlights
+
+### 🎨 Visual System
+- Transition from dense grid → **clean 3-column structure**
+- Emphasis on **vertical photography (2/3 ratio)** to reflect movement
+- Layered hover states with gradient overlays for readability
+
+### 📐 Layout Improvements
+- Increased whitespace for better visual breathing room
+- Clear typographic hierarchy using responsive scaling
+- Separated “Special Formats” into an independent layout block
+
+### 📱 Mobile Optimization
+- Adaptive spacing and typography scaling
+- Touch-friendly slider behavior
+- Consistent readability across breakpoints
+
+### ⚖️ Legal Structure
+- Full **Impressum & Datenschutz (GDPR compliant)**
+- Dynamic year rendering in footer via JavaScript
 
 ---
 
 ## 💻 Getting Started
 
-### Prerequisites
+### 📦 Requirements
+- Node.js (v18+)
+- npm (v9+)
 
-- **Node.js** (v18 or higher)
-- **npm** (v9 or higher)
+---
 
-### Installation & Setup
+### ⚙️ Installation
 
-1.  **Clone the repository:**
+Clone repository:
 
-    ```bash
-    git clone [https://github.com/olhakhodakivska/tonya-musemotion.git](https://github.com/olhakhodakivska/tonya-musemotion.git)
-    ```
+```bash
+git clone https://github.com/olhakhodakivska/tonya-dance-site.git
+```
 
-2.  **Navigate into the project directory:**
+Navigate into project:
 
-    ```bash
-    cd tonya-dance-site
-    ```
+```bash
+cd tonya-dance-site
+```
 
-3.  **Install dependencies:**
+Install dependencies:
 
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
-4.  **Start the development server:**
+Start development server:
 
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 
-5.  **Build for production:**
-    ```bash
-    npm run build
-    ```
+Build for production:
+
+```bash
+npm run build
+```
+
+---
+
+## 📂 Project Structure
+
+```bash
+tonya-dance-site/
+│
+├── public/
+│   └── screenshots/
+│       ├── hero.png
+│       ├── classes.png
+│       ├── reviews.png
+│       └── mobile.png
+│
+├── src/
+│   ├── js/
+│   ├── styles/
+│   └── main.js
+│
+├── index.html
+├── package.json
+└── vite.config.js
+```
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is distributed under the **MIT License**.
 
 ---
 
-**Created by Olhakhodakivska**
+## 👩‍💻 Author
+
+**Olha Khodakivska**
+
+- GitHub: https://github.com/olhakhodakivska
+
+---
