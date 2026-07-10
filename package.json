@@ -7,12 +7,20 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d docs",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "@types/node": "^24.0.0",
+    "typescript": "^7.0.2",
     "vite": "^8.0.1"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   }
 }
