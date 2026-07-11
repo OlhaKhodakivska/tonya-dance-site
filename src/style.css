@@ -421,3 +421,18 @@
 .animate-fadeIn {
   animation: fadeIn 0.6s ease-out forwards;
 }
+
+/* Mobile View */
+@media (max-width: 640px) {
+  .workshop-image-frame {
+    min-height: 300px;
+  }
+
+  .workshop-image {
+    min-height: 300px;
+  }
+
+  .hero-video {
+  object-position: center 50%;
+}
+}

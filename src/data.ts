@@ -89,7 +89,7 @@ export const landingContent: Content = {
         title: { en: 'Stretching', ua: 'Stretching' },
         description: {
           en: 'Structured sessions to increase mobility, strength and recovery.',
-          ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
+          ua: 'Спеціально розроблені тренування для підвищення рухливості, сили та прискорення відновлення.',
         },
         image: './images/stretching.jpg',
         alt: 'Stretching',
@@ -98,7 +98,7 @@ export const landingContent: Content = {
         title: { en: 'Pole Dance', ua: 'Pole Dance' },
         description: {
           en: 'Technique-based pole classes for graceful movement and control.',
-          ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
+          ua: 'Заняття з пілону, орієнтовані на техніку, для витончених рухів та контролю.',
         },
         image: './images/pole_dance.jpg',
         alt: 'Pole dance',
@@ -107,7 +107,7 @@ export const landingContent: Content = {
         title: { en: 'Exotic Pole', ua: 'Exotic Pole' },
         description: {
           en: 'Expressive sensual movement with elegant lines and strong choreography.',
-          ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
+          ua: 'Виразні чуттєві рухи з витонченими лініями та потужною хореографією.',
         },
         image: './images/exotic.jpg',
         alt: 'Exotic pole',
@@ -129,7 +129,7 @@ export const landingContent: Content = {
     },
     ctas: {
       en: ['Invite Me', 'Book a Session'],
-      ua: ['Запросити', 'Записатись'],
+      ua: ['Запроси мене', 'Записатись'],
     },
   },
   contact: {
