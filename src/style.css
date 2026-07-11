@@ -1,4 +1,65 @@
 
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #e5c483;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/cormorant-garamond-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/cormorant-garamond-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/cormorant-garamond-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/montserrat-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/montserrat-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/tonya-dance-site/fonts/montserrat-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @layer base {
   :root {
     --bg: #0d0b0a;
@@ -62,6 +123,10 @@
   mask-image: linear-gradient(180deg, transparent 0%, #000 15%, #000 86%, transparent 100%);
 }
 
+.hero-video {
+  object-position: center 60%;
+}
+
 .primary-button {
   border: 1px solid rgba(255, 240, 194, 0.72);
   border-radius: 5px;
@@ -71,6 +136,7 @@
     inset 0 -10px 18px rgba(52, 31, 7, 0.22),
     0 0 24px rgba(229, 196, 131, 0.2);
   color: #1a1105;
+  text-transform: none;
 }
 
 .primary-button:hover {
@@ -86,6 +152,7 @@
   border-radius: 5px;
   background: transparent;
   color: var(--gold);
+  text-transform: none;
 }
 
 .secondary-button:hover {
@@ -99,6 +166,25 @@
   background: linear-gradient(180deg, #fff0c2 0%, #e5c483 46%, #c2954c 100%);
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.soft-text {
+  color: transparent;
+  background: linear-gradient(90deg, #e5c483 0%, #f7f1e7 74%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.legal-content :where(p, li) {
+  color: transparent;
+  background: linear-gradient(90deg, #e5c483 0%, #f7f1e7 74%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.legal-content a {
+  color: var(--gold);
+  background: none;
 }
 
 .gold-divider {
@@ -129,25 +215,26 @@
 
 .workshop-list {
   display: grid;
-  gap: 0.55rem;
+  gap: 0.75rem;
   padding: 0;
   margin-left: 0;
   color: var(--gold);
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.75;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.45;
   list-style: none;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.22);
 }
 
 .workshop-list li {
   position: relative;
-  padding-left: 1.35rem;
+  padding-left: 1.6rem;
 }
 
 .workshop-list li::before {
   position: absolute;
-  top: 0.86em;
+  top: 0.74em;
   left: 0;
   width: 0.4rem;
   height: 0.4rem;

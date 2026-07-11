@@ -58,12 +58,12 @@ export const landingContent: Content = {
     },
     ctas: {
       en: ['Book a Session', 'Explore Training'],
-      ua: ['ЗАПИСАТИСЬ', 'НАПРЯМКИ ТРЕНУВАНЬ'],
+      ua: ['Записатись', 'Напрямки Тренувань'],
     },
   },
   about: {
     title: {
-      en: 'About me',
+      en: 'About Me',
       ua: 'Про мене',
     },
     intro: {
@@ -77,7 +77,7 @@ export const landingContent: Content = {
   },
   services: {
     title: {
-      en: 'Training directions',
+      en: 'Training Directions',
       ua: 'Заняття в студії',
     },
     description: {
@@ -95,7 +95,7 @@ export const landingContent: Content = {
         alt: 'Stretching',
       },
       {
-        title: { en: 'Pole dance', ua: 'Pole dance' },
+        title: { en: 'Pole Dance', ua: 'Pole Dance' },
         description: {
           en: 'Technique-based pole classes for graceful movement and control.',
           ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
@@ -104,7 +104,7 @@ export const landingContent: Content = {
         alt: 'Pole dance',
       },
       {
-        title: { en: 'Exotic pole', ua: 'Exotic pole' },
+        title: { en: 'Exotic Pole', ua: 'Exotic Pole' },
         description: {
           en: 'Expressive sensual movement with elegant lines and strong choreography.',
           ua: 'Малі групи, увага до кожної та комфортна атмосфера.',

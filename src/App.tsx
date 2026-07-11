@@ -7,8 +7,8 @@ import {
 } from './data';
 
 const LANGUAGE_LABELS: Record<Lang, string> = {
-  en: 'ENG',
-  ua: 'UA',
+  en: 'Eng',
+  ua: 'Ua',
 };
 
 type BookingState = 'idle' | 'success';
@@ -74,9 +74,9 @@ export function App() {
   function validate(): boolean {
     const nextErrors: Partial<FormState> = {};
 
-    if (form.name.trim().length < 2) nextErrors.name = isUkrainian ? 'Ім’я має містити щонайменше 2 символи' : 'Name must be at least 2 characters';
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = isUkrainian ? 'Вкажіть коректну email-адресу' : 'Enter a valid email address';
-    if (!form.message.trim()) nextErrors.message = isUkrainian ? 'Напишіть повідомлення' : 'Message cannot be empty';
+    if (form.name.trim().length < 2) nextErrors.name = isUkrainian ? 'Ім’я Має Містити Щонайменше 2 Символи' : 'Name Must Be At Least 2 Characters';
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = isUkrainian ? 'Вкажіть Коректну Email-Адресу' : 'Enter A Valid Email Address';
+    if (!form.message.trim()) nextErrors.message = isUkrainian ? 'Напишіть Повідомлення' : 'Message Cannot Be Empty';
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -107,17 +107,17 @@ export function App() {
               scrollToSection('home');
             }}
           >
-            MUSEMOTION
+            Musemotion
           </a>
 
-          <nav className="hidden items-center space-x-8 text-[13px] font-medium uppercase tracking-[0.28em] text-[#E5E5E5] md:flex">
+          <nav className="hidden items-center space-x-8 text-[13px] font-medium tracking-[0.2em] md:flex">
             {navItems.map((item, index) => {
               const ids = ['about', 'classes', 'workshops', 'contact'];
               return (
                 <a
                   key={item}
                   href={`#${ids[index]}`}
-                  className="transition hover:text-[#E5C483]"
+                  className="soft-text transition hover:text-[#E5C483]"
                   onClick={(event) => {
                     event.preventDefault();
                     scrollToSection(ids[index]);
@@ -129,16 +129,16 @@ export function App() {
             })}
             <button
               onClick={openBooking}
-              className="primary-button px-6 py-2 text-[13px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ease-in-out active:scale-95"
+              className="primary-button px-6 py-2 text-[13px] font-bold tracking-[0.16em] transition-all duration-300 ease-in-out active:scale-95"
             >
               {heroCtas[0]}
             </button>
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[#A39A94]">
+            <div className="flex items-center gap-2 text-xs font-medium tracking-[0.16em] text-[#A39A94]">
               {languageOrder.map((item, index) => (
                 <span key={item} className="flex items-center gap-2">
                   <button
                     onClick={() => setLang(item)}
-                    className={item === lang ? 'text-[#E5E5E5]' : 'text-[#C2954C] hover:text-[#E5C483]'}
+                    className={item === lang ? 'soft-text' : 'text-[#C2954C] hover:text-[#E5C483]'}
                   >
                     {LANGUAGE_LABELS[item]}
                   </button>
@@ -149,7 +149,7 @@ export function App() {
           </nav>
 
           <button
-            className="text-[#E5E5E5] md:hidden"
+            className="soft-text md:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -164,7 +164,7 @@ export function App() {
       >
         <div className="flex h-full flex-col">
           <div className="flex justify-end p-6">
-            <button onClick={() => setMenuOpen(false)} className="text-3xl text-[#E5E5E5]">
+            <button onClick={() => setMenuOpen(false)} className="soft-text text-3xl">
               ×
             </button>
           </div>
@@ -175,7 +175,7 @@ export function App() {
                 <a
                   key={item}
                   href={`#${ids[index]}`}
-                  className="font-display text-4xl uppercase tracking-[0.04em] text-[#E5C483] transition hover:text-[#FFF0C2]"
+                  className="font-display text-4xl tracking-[0.04em] text-[#E5C483] transition hover:text-[#FFF0C2]"
                   onClick={(event) => {
                     event.preventDefault();
                     setMenuOpen(false);
@@ -186,17 +186,17 @@ export function App() {
                 </a>
               );
             })}
-            <div className="flex gap-3 text-sm font-medium uppercase tracking-[0.2em] text-[#A39A94]">
+            <div className="flex gap-3 text-sm font-medium tracking-[0.16em] text-[#A39A94]">
               {languageOrder.map((item, index) => (
                 <span key={item} className="flex items-center gap-3">
-                  <button key={item} onClick={() => setLang(item)} className={item === lang ? 'text-[#E5E5E5]' : 'text-[#C2954C] hover:text-[#E5C483]'}>
+                  <button key={item} onClick={() => setLang(item)} className={item === lang ? 'soft-text' : 'text-[#C2954C] hover:text-[#E5C483]'}>
                     {LANGUAGE_LABELS[item]}
                   </button>
                   {index < languageOrder.length - 1 ? <span className="text-[#C2954C]/55">|</span> : null}
                 </span>
               ))}
             </div>
-            <button onClick={openBooking} className="primary-button px-8 py-5 font-bold uppercase tracking-widest">
+            <button onClick={openBooking} className="primary-button px-8 py-5 font-bold tracking-[0.16em]">
               {heroCtas[0]}
             </button>
           </nav>
@@ -207,7 +207,7 @@ export function App() {
         {/* Hero Section */}
         <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
           <video
-            className="absolute inset-0 h-full w-full object-cover opacity-55"
+            className="hero-video absolute inset-0 h-full w-full object-cover opacity-55"
             src={heroVideo}
             autoPlay
             muted
@@ -216,19 +216,19 @@ export function App() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B0A]/20 via-[#0D0B0A]/36 to-[#0D0B0A]/92" />
           <div className="relative z-10 px-6">
-            <h1 className="font-display mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.96] text-[#E5E5E5]">
+            <h1 className="font-display soft-text mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.96]">
               {heroHeading[0]} {heroHeading[1]} <span className="gold-text">{heroHeading[2]}</span>
             </h1>
-            <p className="mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed text-[#D9D9D9] md:text-[1.3rem]">
+            <p className="soft-text mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed md:text-[1.3rem]">
               {copy.hero.subhead[lang]}
             </p>
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <button onClick={openBooking} className="primary-button px-7 py-3 font-bold uppercase tracking-[0.26em] transition">
+              <button onClick={openBooking} className="primary-button px-7 py-3 font-bold tracking-[0.18em] transition">
                 {heroCtas[0]}
               </button>
               <button
                 onClick={() => scrollToSection('classes')}
-                className="secondary-button px-7 py-3 font-medium uppercase tracking-[0.22em] transition"
+                className="secondary-button px-7 py-3 font-medium tracking-[0.16em] transition"
               >
                 {heroCtas[1]}
               </button>
@@ -253,10 +253,10 @@ export function App() {
                 </h2>
                 <div className="gold-divider mt-3" />
               </div>
-              <p className="font-display text-3xl leading-[1.08] text-[#E5E5E5] md:text-[3.15rem]">
+              <p className="font-display soft-text text-3xl leading-[1.08] md:text-[3.15rem]">
                 {copy.about.intro[lang]}
               </p>
-              <p className="max-w-xl text-[1rem] leading-8 text-[#D9D9D9] md:text-[1.05rem]">
+              <p className="soft-text max-w-xl text-[1rem] leading-8 md:text-[1.05rem]">
                 {copy.about.body[lang]}
               </p>
             </div>
@@ -279,7 +279,7 @@ export function App() {
                 <article key={service.alt} className="glass-card p-4">
                   <img src={service.image} alt={service.alt} className="h-[360px] w-full object-cover" />
                   <h3 className="mt-5 font-display text-4xl leading-none text-[#E5C483]">{service.title[lang]}</h3>
-                  <p className="mt-3 text-[0.98rem] leading-8 text-[#D9D9D9]/80">{service.description[lang]}</p>
+                  <p className="soft-text mt-3 text-[0.98rem] leading-8">{service.description[lang]}</p>
                 </article>
               ))}
             </div>
@@ -294,14 +294,14 @@ export function App() {
                 {workshopsTitle}
               </h2>
               <div className="gold-divider mt-3" />
-              <p className="mt-6 max-w-xl text-[1rem] font-light leading-8 text-[#D9D9D9] md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
+              <p className="soft-text mt-6 max-w-xl text-[1rem] font-light leading-8 md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
               <ul className="workshop-list mt-6">
                 {copy.workshops.formats[lang].map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <button onClick={openBooking} className="primary-button px-6 py-3 font-bold uppercase tracking-widest transition">
+                <button onClick={openBooking} className="primary-button px-6 py-2 font-bold tracking-[0.16em] transition">
                   {copy.workshops.ctas[lang][0]}
                 </button>
               </div>
@@ -325,7 +325,7 @@ export function App() {
             </p>
             <p>
               <span className="site-footer__label">Location:</span>{' '}
-              <span className="site-footer__value">city / online</span>
+              <span className="site-footer__value">City / Online</span>
             </p>
           </div>
 
@@ -342,17 +342,17 @@ export function App() {
       {bookingOpen ? (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
           <div className="glass-card relative w-full max-w-md p-8">
-            <button className="absolute right-4 top-4 text-2xl text-[#C2954C] hover:text-[#E5E5E5]" onClick={closeBooking} aria-label="Close booking modal">
+            <button className="absolute right-4 top-4 text-2xl text-[#C2954C] hover:text-[#E5E5E5]" onClick={closeBooking} aria-label="Close Booking Modal">
               ×
             </button>
             {bookingState === 'success' ? (
               <div className="py-8 text-center">
                 <div className="mb-4 text-5xl text-[#E5C483]">✓</div>
-                <h2 className="font-display gold-text text-4xl uppercase">{isUkrainian ? 'Дякую!' : 'Thank you!'}</h2>
-                <p className="mt-2 text-[#D9D9D9]">
-                  {isUkrainian ? 'Я зв’яжусь з вами найближчим часом.' : 'I will contact you shortly.'}
+                <h2 className="font-display gold-text text-4xl">{isUkrainian ? 'Дякую!' : 'Thank You!'}</h2>
+                <p className="soft-text mt-2">
+                  {isUkrainian ? 'Я Зв’яжусь З Вами Найближчим Часом.' : 'I Will Contact You Shortly.'}
                 </p>
-                <button onClick={closeBooking} className="mt-6 text-xs uppercase tracking-widest text-[#E5C483] underline">
+                <button onClick={closeBooking} className="mt-6 text-xs tracking-[0.16em] text-[#E5C483] underline">
                   {isUkrainian ? 'Закрити' : 'Close'}
                 </button>
               </div>
@@ -367,32 +367,31 @@ export function App() {
                       value={form.name}
                       onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
                       type="text"
-                      placeholder={isUkrainian ? 'Ваше ім’я' : 'Your Name'}
+                      placeholder={isUkrainian ? 'Ваше Ім’я' : 'Your Name'}
                       className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
-                    {errors.name ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.name}</p> : null}
+                    {errors.name ? <p className="mt-1 text-xs font-bold tracking-tighter text-red-500">{errors.name}</p> : null}
                   </div>
                   <div>
                     <input
                       value={form.email}
                       onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
                       type="email"
-                      placeholder={isUkrainian ? 'Ваш email' : 'Your Email'}
+                      placeholder={isUkrainian ? 'Ваш Email' : 'Your Email'}
                       className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
-                    {errors.email ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.email}</p> : null}
+                    {errors.email ? <p className="mt-1 text-xs font-bold tracking-tighter text-red-500">{errors.email}</p> : null}
                   </div>
                   <div>
                     <textarea
                       value={form.message}
                       onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
-                      placeholder={isUkrainian ? 'Ваше повідомлення' : 'Message'}
+                      placeholder={isUkrainian ? 'Ваше Повідомлення' : 'Message'}
                       className="h-28 w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
-                    {errors.message ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.message}</p> : null}
+                    {errors.message ? <p className="mt-1 text-xs font-bold tracking-tighter text-red-500">{errors.message}</p> : null}
                   </div>
-                  <button type="submit" className="primary-button w-full py-4 font-bold uppercase tracking-[0.28em] transition">
-                    {heroCtas[0]}
+                  <button type="submit" className="primary-button w-full py-4 font-bold tracking-[0.18em] transition">                    {heroCtas[0]}
                   </button>
                 </form>
               </>
