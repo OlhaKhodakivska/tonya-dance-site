@@ -1,21 +1,21 @@
 {
-  "name": "Tonya Musemotion",
-  "short_name": "Musemotion",
-  "description": "Personal Online Trainer | Dance & Movement",
+  "name": "Tonya Dance & Pole Art",
+  "short_name": "Tonya Dance",
+  "description": "Персональні та групові тренування зі стретчингу і pole dance у Німеччині",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#FF4500",
+  "background_color": "#0d0b0a",
+  "theme_color": "#e5c483",
   "icons": [
-  {
-    "src": "icons/android-chrome-192x192.png",
-    "sizes": "192x192",
-    "type": "image/png"
-  },
-  {
-    "src": "icons/android-chrome-512x512.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }
-]
+    {
+      "src": "icons/Gemini_Generated_192192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/Gemini_Generated_512512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

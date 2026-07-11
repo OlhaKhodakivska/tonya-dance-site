@@ -101,13 +101,14 @@ export function App() {
         <div className="mx-auto flex items-center justify-between px-6 container">
           <a
             href="#home"
-            className="font-display gold-text text-3xl tracking-[0.16em] transition"
+            className="font-display gold-text text-3xl tracking-[0.16em] transition flex items-center gap-3"
             onClick={(event) => {
               event.preventDefault();
               scrollToSection('home');
             }}
           >
-            Musemotion
+            <img src="./icons/Gemini_Generated_512512.png" alt="Tonya Musemotion" className="h-20 w-20 object-contain" />
+            <span className="sr-only">Musemotion</span>
           </a>
 
           <nav className="hidden items-center space-x-8 text-[13px] font-medium tracking-[0.2em] md:flex">
