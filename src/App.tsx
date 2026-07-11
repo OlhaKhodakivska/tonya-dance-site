@@ -208,7 +208,7 @@ export function App() {
         {/* Hero Section */}
         <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
           <video
-            className="hero-video absolute inset-0 h-full w-full object-cover opacity-55"
+            className="hero-video absolute inset-0 h-full w-full object-cover opacity-100"
             src={heroVideo}
             autoPlay
             muted
