@@ -40,7 +40,7 @@ export type Content = {
 
 export const contactEmail = 'tonya.musemotion@gmail.com';
 export const instagramUrl = 'https://www.instagram.com/tonya.musemotion/';
-export const heroVideo = '/videos/website%20start.mov';
+export const heroVideo = './videos/website-start.mov';
 
 export const landingContent: Content = {
   nav: {
@@ -91,7 +91,7 @@ export const landingContent: Content = {
           en: 'Structured sessions to increase mobility, strength and recovery.',
           ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
         },
-        image: '/images/stretching_.jpg',
+        image: './images/stretching.jpg',
         alt: 'Stretching',
       },
       {
@@ -100,7 +100,7 @@ export const landingContent: Content = {
           en: 'Technique-based pole classes for graceful movement and control.',
           ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
         },
-        image: '/images/pole_dance.jpg',
+        image: './images/pole_dance.jpg',
         alt: 'Pole dance',
       },
       {
@@ -109,7 +109,7 @@ export const landingContent: Content = {
           en: 'Expressive sensual movement with elegant lines and strong choreography.',
           ua: 'Малі групи, увага до кожної та комфортна атмосфера.',
         },
-        image: '/images/tonya.jpg',
+        image: './images/exotic.jpg',
         alt: 'Exotic pole',
       },
     ],
@@ -121,11 +121,11 @@ export const landingContent: Content = {
     },
     body: {
       en: 'I travel to different cities and studios, delivering high-level training and signature choreography. Perfect for studios that want to elevate their classes and offer something unique.',
-      ua: 'Я виїжджаю в різні міста й студії, проводжу сильні тренування та авторську хореографію. Це формат для студій, які хочуть підняти рівень занять і дати учням щось особливе.',
+      ua: 'Я виїжджаю в різні міста й студії, проводжу тренування високого рівня та авторську хореографію. Ідеально для студій, які хочуть підняти рівень занять і запропонувати щось особливе.',
     },
     formats: {
       en: ['Private sessions', 'Pole Art', 'Exotic'],
-      ua: ['Індивідуальні заняття', 'Pole Art', 'Exotic'],
+      ua: ['Private sessions', 'Pole Art', 'Exotic'],
     },
     ctas: {
       en: ['Invite Me', 'Book a Session'],

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import {
   contactEmail,
   heroVideo,
-  instagramUrl,
   landingContent,
   type Lang,
 } from './data';
@@ -58,7 +57,6 @@ export function App() {
   const aboutTitle = copy.about.title[lang];
   const servicesTitle = copy.services.title[lang];
   const workshopsTitle = copy.workshops.title[lang];
-  const contactTitle = copy.contact.title[lang];
 
   function openBooking() {
     setBookingState('idle');
@@ -94,15 +92,16 @@ export function App() {
     setBookingState('success');
   }
 
-  const bookingLabel = isUkrainian ? 'Запис' : 'Booking';
+  const languageOrder: Lang[] = ['ua', 'en'];
 
   return (
-    <div className="min-h-screen bg-[#0B0B0D] text-[#F5F5F5] antialiased">
-      <header className="fixed z-50 w-full border-b border-[#C9A96A]/20 bg-[#0B0B0D]/95 py-4 backdrop-blur-md">
+    <div className="site-shell min-h-screen bg-[#0D0B0A] text-[#E5E5E5] antialiased">
+      {/* Header / Navigation */}
+      <header className="fixed z-50 w-full border-b border-[#C2954C]/25 bg-[#0D0B0A]/92 py-4 backdrop-blur-md">
         <div className="mx-auto flex items-center justify-between px-6 container">
           <a
             href="#home"
-            className="font-display text-3xl italic tracking-[0.18em] text-[#C9A96A] transition hover:text-[#D4AF37]"
+            className="font-display gold-text text-3xl tracking-[0.16em] transition"
             onClick={(event) => {
               event.preventDefault();
               scrollToSection('home');
@@ -111,14 +110,14 @@ export function App() {
             MUSEMOTION
           </a>
 
-          <nav className="hidden items-center space-x-8 text-[13px] font-bold uppercase tracking-[0.28em] md:flex">
+          <nav className="hidden items-center space-x-8 text-[13px] font-medium uppercase tracking-[0.28em] text-[#E5E5E5] md:flex">
             {navItems.map((item, index) => {
               const ids = ['about', 'classes', 'workshops', 'contact'];
               return (
                 <a
                   key={item}
                   href={`#${ids[index]}`}
-                  className="transition hover:text-[#D4AF37]"
+                  className="transition hover:text-[#E5C483]"
                   onClick={(event) => {
                     event.preventDefault();
                     scrollToSection(ids[index]);
@@ -130,25 +129,27 @@ export function App() {
             })}
             <button
               onClick={openBooking}
-              className="border border-[#C9A96A] px-6 py-2 text-[13px] font-bold uppercase tracking-[0.2em] text-[#C9A96A] transition-all duration-300 ease-in-out hover:bg-[#C9A96A] hover:text-[#0B0B0D] active:scale-95"
+              className="primary-button px-6 py-2 text-[13px] font-bold uppercase tracking-[0.2em] transition-all duration-300 ease-in-out active:scale-95"
             >
               {heroCtas[0]}
             </button>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#C9A96A]/80">
-              {(['en', 'ua'] as Lang[]).map((item) => (
-                <button
-                  key={item}
-                  onClick={() => setLang(item)}
-                  className={item === lang ? 'text-[#D4AF37]' : 'hover:text-[#F5F5F5]'}
-                >
-                  {LANGUAGE_LABELS[item]}
-                </button>
+            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] text-[#A39A94]">
+              {languageOrder.map((item, index) => (
+                <span key={item} className="flex items-center gap-2">
+                  <button
+                    onClick={() => setLang(item)}
+                    className={item === lang ? 'text-[#E5E5E5]' : 'text-[#C2954C] hover:text-[#E5C483]'}
+                  >
+                    {LANGUAGE_LABELS[item]}
+                  </button>
+                  {index < languageOrder.length - 1 ? <span className="text-[#C2954C]/55">|</span> : null}
+                </span>
               ))}
             </div>
           </nav>
 
           <button
-            className="text-[#F5F5F5] md:hidden"
+            className="text-[#E5E5E5] md:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
           >
@@ -157,12 +158,13 @@ export function App() {
         </div>
       </header>
 
+      {/* Mobile Menu */}
       <aside
-        className={`fixed inset-0 z-[1020] bg-[#0B0B0D] transition-transform duration-300 md:hidden ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed inset-0 z-[1020] bg-[#0D0B0A] transition-transform duration-300 md:hidden ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="flex h-full flex-col">
           <div className="flex justify-end p-6">
-            <button onClick={() => setMenuOpen(false)} className="text-3xl text-[#F5F5F5]">
+            <button onClick={() => setMenuOpen(false)} className="text-3xl text-[#E5E5E5]">
               ×
             </button>
           </div>
@@ -173,7 +175,7 @@ export function App() {
                 <a
                   key={item}
                   href={`#${ids[index]}`}
-                  className="text-3xl font-black uppercase italic tracking-tighter transition hover:text-[#D4AF37]"
+                  className="font-display text-4xl uppercase tracking-[0.04em] text-[#E5C483] transition hover:text-[#FFF0C2]"
                   onClick={(event) => {
                     event.preventDefault();
                     setMenuOpen(false);
@@ -184,14 +186,17 @@ export function App() {
                 </a>
               );
             })}
-            <div className="flex gap-3 text-sm font-bold uppercase tracking-[0.2em] text-[#C9A96A]/80">
-              {(['en', 'ua'] as Lang[]).map((item) => (
-                <button key={item} onClick={() => setLang(item)} className={item === lang ? 'text-[#D4AF37]' : 'hover:text-[#F5F5F5]'}>
-                  {LANGUAGE_LABELS[item]}
-                </button>
+            <div className="flex gap-3 text-sm font-medium uppercase tracking-[0.2em] text-[#A39A94]">
+              {languageOrder.map((item, index) => (
+                <span key={item} className="flex items-center gap-3">
+                  <button key={item} onClick={() => setLang(item)} className={item === lang ? 'text-[#E5E5E5]' : 'text-[#C2954C] hover:text-[#E5C483]'}>
+                    {LANGUAGE_LABELS[item]}
+                  </button>
+                  {index < languageOrder.length - 1 ? <span className="text-[#C2954C]/55">|</span> : null}
+                </span>
               ))}
             </div>
-            <button onClick={openBooking} className="bg-[#C9A96A] px-8 py-5 font-black uppercase tracking-widest text-[#0B0B0D] shadow-[0_0_30px_rgba(201,169,106,0.35)]">
+            <button onClick={openBooking} className="primary-button px-8 py-5 font-bold uppercase tracking-widest">
               {heroCtas[0]}
             </button>
           </nav>
@@ -199,7 +204,8 @@ export function App() {
       </aside>
 
       <main className="pt-20">
-        <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0B0B0D] text-center">
+        {/* Hero Section */}
+        <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
           <video
             className="absolute inset-0 h-full w-full object-cover opacity-55"
             src={heroVideo}
@@ -208,21 +214,21 @@ export function App() {
             loop
             playsInline
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0B0B0D]/20 via-[#3A0A12]/35 to-[#0B0B0D]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B0A]/20 via-[#0D0B0A]/36 to-[#0D0B0A]/92" />
           <div className="relative z-10 px-6">
-            <h1 className="font-display mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.92] tracking-[-0.03em] text-[#F5F5F5]">
-              {heroHeading[0]} {heroHeading[1]} <span className="text-[#C9A96A]">{heroHeading[2]}</span>
+            <h1 className="font-display mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.96] text-[#E5E5E5]">
+              {heroHeading[0]} {heroHeading[1]} <span className="gold-text">{heroHeading[2]}</span>
             </h1>
-            <p className="mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed text-[#F5F5F5]/86 md:text-[1.3rem]">
+            <p className="mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed text-[#D9D9D9] md:text-[1.3rem]">
               {copy.hero.subhead[lang]}
             </p>
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
-              <button onClick={openBooking} className="rounded-sm border border-[#D4AF37] bg-[#C9A96A] px-7 py-3 font-bold uppercase tracking-[0.26em] text-[#0B0B0D] transition hover:bg-[#D4AF37]">
+              <button onClick={openBooking} className="primary-button px-7 py-3 font-bold uppercase tracking-[0.26em] transition">
                 {heroCtas[0]}
               </button>
               <button
                 onClick={() => scrollToSection('classes')}
-                className="rounded-sm border border-[#C9A96A]/35 px-7 py-3 font-medium uppercase tracking-[0.22em] text-[#F5F5F5]/86 transition hover:border-[#D4AF37] hover:text-[#D4AF37]"
+                className="secondary-button px-7 py-3 font-medium uppercase tracking-[0.22em] transition"
               >
                 {heroCtas[1]}
               </button>
@@ -230,137 +236,129 @@ export function App() {
           </div>
         </section>
 
-        <section id="about" className="border-t border-[#C9A96A]/15 bg-[#0B0B0D] py-20">
+        {/* About Section */}
+        <section id="about" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto grid max-w-[1100px] items-center gap-10 px-6 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
               <img
-                src="/images/subhead.jpg"
+                src="./images/subhead.jpg"
                 alt="Tonya stretching"
-                className="w-full rounded-sm object-cover shadow-2xl"
+                className="w-full rounded-sm border border-[#C2954C]/25 object-cover shadow-2xl"
               />
             </div>
             <div className="order-1 space-y-6 lg:order-2">
               <div>
-                <h2 className="font-display text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.02em] text-[#C9A96A]">
+                <h2 className="font-display gold-text text-[clamp(2.5rem,5vw,4.8rem)] leading-[0.98]">
                   {aboutTitle}
                 </h2>
-                <div className="mt-3 h-px w-24 bg-[#C9A96A]" />
+                <div className="gold-divider mt-3" />
               </div>
-              <p className="font-display text-3xl leading-[1.05] text-[#F5F5F5] md:text-[3.15rem]">
+              <p className="font-display text-3xl leading-[1.08] text-[#E5E5E5] md:text-[3.15rem]">
                 {copy.about.intro[lang]}
               </p>
-              <p className="max-w-xl text-[1rem] leading-8 text-[#F5F5F5]/82 md:text-[1.05rem]">
+              <p className="max-w-xl text-[1rem] leading-8 text-[#D9D9D9] md:text-[1.05rem]">
                 {copy.about.body[lang]}
               </p>
             </div>
           </div>
         </section>
 
-        <section id="classes" className="border-t border-[#C9A96A]/15 bg-[#0B0B0D] py-20">
+        {/* Classes / Training Section */}
+        <section id="classes" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto max-w-[1100px] px-6">
             <div className="mb-10">
-              <h2 className="text-3xl font-black uppercase italic tracking-tighter md:text-5xl">
+              <h2 className="font-display gold-text text-4xl md:text-6xl">
                 {servicesTitle}
               </h2>
-              <div className="mt-2 h-px w-24 bg-[#C9A96A]" />
-              <p className="mt-3 text-[1rem] leading-8 text-[#F5F5F5]/70">{copy.services.description[lang]}</p>
+              <div className="gold-divider mt-3" />
+              <p className="mt-3 text-[1rem] leading-8 text-[#A39A94]">{copy.services.description[lang]}</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
               {copy.services.items.map((service) => (
-                <article key={service.alt} className="border border-[#C9A96A]/15 bg-[#3A0A12]/20 p-4 shadow-[0_0_0_1px_rgba(201,169,106,0.08)]">
+                <article key={service.alt} className="glass-card p-4">
                   <img src={service.image} alt={service.alt} className="h-[360px] w-full object-cover" />
-                  <h3 className="mt-5 font-display text-4xl leading-none tracking-[-0.02em] text-[#F5F5F5]">{service.title[lang]}</h3>
-                  <p className="mt-3 text-[0.98rem] leading-8 text-[#F5F5F5]/72">{service.description[lang]}</p>
+                  <h3 className="mt-5 font-display text-4xl leading-none text-[#E5C483]">{service.title[lang]}</h3>
+                  <p className="mt-3 text-[0.98rem] leading-8 text-[#D9D9D9]/80">{service.description[lang]}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="workshops" className="border-t border-[#C9A96A]/15 bg-[#0B0B0D] py-20">
+        {/* Workshops & Masterclasses Section */}
+        <section id="workshops" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto grid max-w-[1100px] gap-10 px-6 lg:grid-cols-2 lg:items-center">
             <div>
-              <h2 className="text-3xl font-black uppercase italic tracking-tighter md:text-5xl">
+              <h2 className="font-display text-4xl text-[#E5C483] md:text-6xl">
                 {workshopsTitle}
               </h2>
-              <div className="mt-2 h-px w-24 bg-[#C9A96A]" />
-              <p className="mt-6 max-w-xl text-[1rem] leading-8 text-[#F5F5F5]/82 md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
-              <ul className="mt-6 space-y-2 text-lg text-[#F5F5F5] tracking-[0.02em]">
+              <div className="gold-divider mt-3" />
+              <p className="mt-6 max-w-xl text-[1rem] font-light leading-8 text-[#D9D9D9] md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
+              <ul className="workshop-list mt-6">
                 {copy.workshops.formats[lang].map((item) => (
-                  <li key={item}>• {item}</li>
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <button onClick={openBooking} className="bg-[#C9A96A] px-6 py-3 font-bold uppercase tracking-widest text-[#0B0B0D] transition hover:bg-[#D4AF37]">
+                <button onClick={openBooking} className="primary-button px-6 py-3 font-bold uppercase tracking-widest transition">
                   {copy.workshops.ctas[lang][0]}
-                </button>
-                <button onClick={openBooking} className="border border-[#C9A96A]/30 px-6 py-3 font-medium transition hover:border-[#D4AF37] hover:text-[#D4AF37]">
-                  {copy.workshops.ctas[lang][1]}
                 </button>
               </div>
             </div>
-            <div>
-              <img src="/images/tonya.jpg" alt="Workshops" className="h-full w-full object-cover" />
+            <div className="workshop-image-frame">
+              <img src="./images/workshop.JPG" alt="Workshops" className="workshop-image" />
             </div>
           </div>
         </section>
       </main>
 
-      <footer id="contact" className="border-t border-[#C9A96A]/15 bg-[#0B0B0D] py-10">
-        <div className="mx-auto flex max-w-[1100px] flex-col gap-10 px-6 md:flex-row md:justify-between">
-          <div className="space-y-4">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-[#C9A96A]">{contactTitle}</h4>
-            <div className="space-y-2 text-[#F5F5F5]">
-              <p className="uppercase tracking-[0.28em] text-[#C9A96A]/80 text-xs">{bookingLabel}</p>
-              <a className="block text-lg hover:text-[#D4AF37]" href={`mailto:${contactEmail}`}>
+      {/* Footer / Contact & Legal Section */}
+      <footer id="contact" className="site-footer">
+        <div className="site-footer__inner">
+          <div className="site-footer__meta">
+            <p>
+              <span className="site-footer__label">Booking:</span>{' '}
+              <a className="site-footer__value site-footer__blurred-email" href={`mailto:${contactEmail}`} aria-label={contactEmail}>
                 {contactEmail}
               </a>
-              <a className="block text-[#F5F5F5]/70 hover:text-[#D4AF37]" href={instagramUrl} target="_blank" rel="noreferrer">
-                {instagramUrl}
-              </a>
-            </div>
+            </p>
+            <p>
+              <span className="site-footer__label">Location:</span>{' '}
+              <span className="site-footer__value">city / online</span>
+            </p>
           </div>
 
-          <div className="space-y-4">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-[#C9A96A]">Legal</h4>
-            <div className="flex flex-col gap-2 text-sm uppercase tracking-[0.2em] text-[#C9A96A]/70">
-              <a href="./impressum.html" className="transition hover:text-white">
-                Impressum
-              </a>
-              <a href="./datenschutz.html" className="transition hover:text-white">
-                Datenschutz
-              </a>
-            </div>
-          </div>
+          <div className="site-footer__divider" />
 
-          <div className="max-w-sm text-right text-[#F5F5F5]/40">
-            <p className="font-display text-4xl italic uppercase tracking-[0.18em] text-[#C9A96A]/20">MUSEMOTION</p>
-            <p className="mt-2 text-xs uppercase tracking-[0.3em]">{copy.footer[lang]}</p>
-          </div>
+          <nav className="site-footer__legal" aria-label="Legal links">
+            <a href="./impressum.html">Impressum</a>
+            <a href="./datenschutz.html">Datenschutz</a>
+          </nav>
         </div>
       </footer>
 
+      {/* Booking Modal */}
       {bookingOpen ? (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-[#C9A96A]/15 bg-[#0B0B0D] p-8 shadow-[0_0_60px_rgba(58,10,18,0.3)]">
-            <button className="absolute right-4 top-4 text-2xl text-[#C9A96A]/70 hover:text-[#F5F5F5]" onClick={closeBooking} aria-label="Close booking modal">
+          <div className="glass-card relative w-full max-w-md p-8">
+            <button className="absolute right-4 top-4 text-2xl text-[#C2954C] hover:text-[#E5E5E5]" onClick={closeBooking} aria-label="Close booking modal">
               ×
             </button>
             {bookingState === 'success' ? (
               <div className="py-8 text-center">
-                <div className="mb-4 text-5xl text-[#D4AF37]">✓</div>
-                <h2 className="text-2xl font-black uppercase italic">{isUkrainian ? 'Дякую!' : 'Thank you!'}</h2>
-                <p className="mt-2 text-[#F5F5F5]/70">
+                <div className="mb-4 text-5xl text-[#E5C483]">✓</div>
+                <h2 className="font-display gold-text text-4xl uppercase">{isUkrainian ? 'Дякую!' : 'Thank you!'}</h2>
+                <p className="mt-2 text-[#D9D9D9]">
                   {isUkrainian ? 'Я зв’яжусь з вами найближчим часом.' : 'I will contact you shortly.'}
                 </p>
-                <button onClick={closeBooking} className="mt-6 text-xs uppercase tracking-widest text-[#C9A96A]/80 underline">
+                <button onClick={closeBooking} className="mt-6 text-xs uppercase tracking-widest text-[#E5C483] underline">
                   {isUkrainian ? 'Закрити' : 'Close'}
                 </button>
               </div>
             ) : (
               <>
-                <h2 className="font-display mb-6 text-4xl leading-none tracking-[-0.02em] text-[#C9A96A]">
+                <h2 className="font-display gold-text mb-6 text-4xl leading-none">
                   {heroCtas[0]}
                 </h2>
                 <form className="space-y-4" onSubmit={handleSubmit}>
@@ -370,7 +368,7 @@ export function App() {
                       onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
                       type="text"
                       placeholder={isUkrainian ? 'Ваше ім’я' : 'Your Name'}
-                      className="w-full border border-[#C9A96A]/20 bg-[#0B0B0D] p-3 outline-none transition focus:border-[#D4AF37]"
+                      className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
                     {errors.name ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.name}</p> : null}
                   </div>
@@ -380,7 +378,7 @@ export function App() {
                       onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
                       type="email"
                       placeholder={isUkrainian ? 'Ваш email' : 'Your Email'}
-                      className="w-full border border-[#C9A96A]/20 bg-[#0B0B0D] p-3 outline-none transition focus:border-[#D4AF37]"
+                      className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
                     {errors.email ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.email}</p> : null}
                   </div>
@@ -389,11 +387,11 @@ export function App() {
                       value={form.message}
                       onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
                       placeholder={isUkrainian ? 'Ваше повідомлення' : 'Message'}
-                      className="h-28 w-full border border-[#C9A96A]/20 bg-[#0B0B0D] p-3 outline-none transition focus:border-[#D4AF37]"
+                      className="h-28 w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
                     {errors.message ? <p className="mt-1 text-xs font-bold uppercase tracking-tighter text-red-500">{errors.message}</p> : null}
                   </div>
-                  <button type="submit" className="w-full bg-[#C9A96A] py-4 font-bold uppercase tracking-[0.28em] text-[#0B0B0D] transition hover:bg-[#D4AF37]">
+                  <button type="submit" className="primary-button w-full py-4 font-bold uppercase tracking-[0.28em] transition">
                     {heroCtas[0]}
                   </button>
                 </form>
