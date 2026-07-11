@@ -108,6 +108,19 @@
   isolation: isolate;
 }
 
+.site-main-background {
+  background:
+    url('/tonya-dance-site/images/bg.png') center / cover no-repeat fixed,
+    radial-gradient(circle at 18% 20%, rgba(194, 149, 76, 0.1), transparent 24%),
+    radial-gradient(circle at 78% 8%, rgba(229, 196, 131, 0.11), transparent 19%),
+    radial-gradient(circle at 42% 70%, rgba(194, 149, 76, 0.08), transparent 25%),
+    linear-gradient(180deg, #0d0b0a 0%, #050403 100%);
+}
+
+.site-main-background > section {
+  background-color: transparent !important;
+}
+
 .site-shell::before {
   position: fixed;
   inset: 0;
@@ -289,8 +302,10 @@
 
 .site-footer {
   border-top: 1px solid rgba(194, 149, 76, 0.36);
-  background: rgba(5, 4, 3, 0.72);
+  background: #050403;
   backdrop-filter: blur(14px);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .site-footer__inner {

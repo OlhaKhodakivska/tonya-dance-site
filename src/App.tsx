@@ -97,7 +97,7 @@ export function App() {
   return (
     <div className="site-shell min-h-screen bg-[#0D0B0A] text-[#E5E5E5] antialiased">
       {/* Header / Navigation */}
-      <header className="fixed z-50 w-full border-b border-[#C2954C]/25 bg-[#0D0B0A]/92 py-4 backdrop-blur-md">
+      <header className="fixed z-50 w-full border-b border-[#C2954C]/25 bg-[#0D0B0A] py-4 backdrop-blur-md">
         <div className="mx-auto flex items-center justify-between px-6 container">
           <a
             href="#home"
@@ -204,7 +204,7 @@ export function App() {
         </div>
       </aside>
 
-      <main className="pt-20">
+      <main className="site-main-background pt-20">
         {/* Hero Section */}
         <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
           <video
