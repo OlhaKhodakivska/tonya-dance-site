@@ -51,6 +51,18 @@ export function App() {
     };
   }, [bookingOpen, menuOpen]);
 
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        setBookingOpen(false);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const navItems = useMemo(() => copy.nav[lang], [copy.nav, lang]);
   const heroHeading = copy.hero.heading[lang];
   const heroCtas = copy.hero.ctas[lang];
@@ -61,6 +73,7 @@ export function App() {
   function openBooking() {
     setBookingState('idle');
     setErrors({});
+    setMenuOpen(false);
     setBookingOpen(true);
   }
 
@@ -97,21 +110,21 @@ export function App() {
   return (
     <div className="site-shell min-h-screen bg-[#0D0B0A] text-[#E5E5E5] antialiased">
       {/* Header / Navigation */}
-      <header className="fixed z-50 w-full border-b border-[#C2954C]/25 bg-[#0D0B0A] py-4 backdrop-blur-md">
+      <header className="app-header fixed z-50 w-full border-b border-[#C2954C]/25 bg-[#0D0B0A] py-4 backdrop-blur-md">
         <div className="mx-auto flex items-center justify-between px-6 container">
           <a
             href="#home"
-            className="font-display gold-text text-3xl tracking-[0.16em] transition flex items-center gap-3"
+            className="brand-mark font-display gold-text text-3xl tracking-[0.16em] transition flex items-center gap-3"
             onClick={(event) => {
               event.preventDefault();
               scrollToSection('home');
             }}
           >
-            <img src="./icons/Gemini_Generated_512512.png" alt="Tonya Musemotion" className="h-20 w-20 object-contain" />
+            <img src="./icons/Gemini_Generated_512512.png" alt="Tonya Musemotion" className="brand-logo h-20 w-20 object-contain" />
             <span className="sr-only">Musemotion</span>
           </a>
 
-          <nav className="hidden items-center space-x-8 text-[13px] font-medium tracking-[0.2em] md:flex">
+          <nav className="hidden items-center space-x-8 text-[13px] font-medium tracking-[0.2em] xl:flex">
             {navItems.map((item, index) => {
               const ids = ['about', 'classes', 'workshops', 'contact'];
               return (
@@ -150,33 +163,38 @@ export function App() {
           </nav>
 
           <button
-            className="soft-text md:hidden"
+            className="menu-trigger soft-text xl:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
+            aria-expanded={menuOpen}
           >
-            ☰
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </header>
 
       {/* Mobile Menu */}
       <aside
-        className={`fixed inset-0 z-[1020] bg-[#0D0B0A] transition-transform duration-300 md:hidden ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`mobile-menu fixed inset-0 z-[1020] bg-[#0D0B0A] transition-transform duration-300 xl:hidden ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        aria-hidden={!menuOpen}
       >
         <div className="flex h-full flex-col">
-          <div className="flex justify-end p-6">
-            <button onClick={() => setMenuOpen(false)} className="soft-text text-3xl">
+          <div className="mobile-menu__top flex items-center justify-between p-6">
+            <img src="./icons/Gemini_Generated_512512.png" alt="" className="h-14 w-14 object-contain" />
+            <button onClick={() => setMenuOpen(false)} className="mobile-menu__close soft-text text-3xl" aria-label="Close menu">
               ×
             </button>
           </div>
-          <nav className="flex flex-grow flex-col items-center justify-center space-y-10">
+          <nav className="mobile-menu__nav flex flex-grow flex-col justify-center">
             {navItems.map((item, index) => {
               const ids = ['about', 'classes', 'workshops', 'contact'];
               return (
                 <a
                   key={item}
                   href={`#${ids[index]}`}
-                  className="font-display text-4xl tracking-[0.04em] text-[#E5C483] transition hover:text-[#FFF0C2]"
+                  className="mobile-menu__link font-display text-[#E5C483] transition hover:text-[#FFF0C2]"
                   onClick={(event) => {
                     event.preventDefault();
                     setMenuOpen(false);
@@ -187,7 +205,7 @@ export function App() {
                 </a>
               );
             })}
-            <div className="flex gap-3 text-sm font-medium tracking-[0.16em] text-[#A39A94]">
+            <div className="mobile-menu__language flex gap-3 text-sm font-medium tracking-[0.16em] text-[#A39A94]">
               {languageOrder.map((item, index) => (
                 <span key={item} className="flex items-center gap-3">
                   <button key={item} onClick={() => setLang(item)} className={item === lang ? 'soft-text' : 'text-[#C2954C] hover:text-[#E5C483]'}>
@@ -197,7 +215,7 @@ export function App() {
                 </span>
               ))}
             </div>
-            <button onClick={openBooking} className="primary-button px-8 py-5 font-bold tracking-[0.16em]">
+            <button onClick={openBooking} className="primary-button mobile-menu__cta font-bold tracking-[0.16em]">
               {heroCtas[0]}
             </button>
           </nav>
@@ -206,7 +224,7 @@ export function App() {
 
       <main className="site-main-background pt-20">
         {/* Hero Section */}
-        <section id="home" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
+        <section id="home" className="hero-section relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[#0D0B0A] text-center">
           <video
             className="hero-video absolute inset-0 h-full w-full object-cover opacity-100"
             src={heroVideo}
@@ -216,14 +234,16 @@ export function App() {
             playsInline
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[#0D0B0A]/20 via-[#0D0B0A]/36 to-[#0D0B0A]/92" />
-          <div className="relative z-10 px-6">
-            <h1 className="font-display soft-text mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.96]">
-              {heroHeading[0]} {heroHeading[1]} <span className="gold-text">{heroHeading[2]}</span>
+          <div className="hero-content relative z-10 px-6">
+            <h1 className="hero-title font-display soft-text mx-auto mb-6 max-w-5xl text-[clamp(3.25rem,8vw,7rem)] leading-[0.96]">
+              <span className="hero-title__part">{heroHeading[0]}</span>{' '}
+              <span className="hero-title__part">{heroHeading[1]}</span>{' '}
+              <span className="hero-title__part gold-text">{heroHeading[2]}</span>
             </h1>
-            <p className="soft-text mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed md:text-[1.3rem]">
+            <p className="hero-subhead soft-text mx-auto max-w-2xl text-[1.1rem] font-light leading-relaxed md:text-[1.3rem]">
               {copy.hero.subhead[lang]}
             </p>
-            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <div className="hero-actions mt-10 flex flex-col justify-center gap-4 sm:flex-row">
               <button onClick={openBooking} className="primary-button px-7 py-3 font-bold tracking-[0.18em] transition">
                 {heroCtas[0]}
               </button>
@@ -238,13 +258,13 @@ export function App() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
+        <section id="about" className="content-section border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto grid max-w-[1100px] items-center gap-10 px-6 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
               <img
                 src="./images/subhead.jpg"
                 alt="Tonya stretching"
-                className="w-full rounded-sm border border-[#C2954C]/25 object-cover shadow-2xl"
+                className="about-image w-full rounded-sm border border-[#C2954C]/25 object-cover shadow-2xl"
               />
             </div>
             <div className="order-1 space-y-6 lg:order-2">
@@ -254,10 +274,10 @@ export function App() {
                 </h2>
                 <div className="gold-divider mt-3" />
               </div>
-              <p className="font-display soft-text text-3xl leading-[1.08] md:text-[3.15rem]">
+              <p className="about-intro font-display soft-text text-3xl leading-[1.08] md:text-[3.15rem]">
                 {copy.about.intro[lang]}
               </p>
-              <p className="soft-text max-w-xl text-[1rem] leading-8 md:text-[1.05rem]">
+              <p className="mobile-readable soft-text max-w-xl text-[1rem] leading-8 md:text-[1.05rem]">
                 {copy.about.body[lang]}
               </p>
             </div>
@@ -265,7 +285,7 @@ export function App() {
         </section>
 
         {/* Classes / Training Section */}
-        <section id="classes" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
+        <section id="classes" className="content-section border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto max-w-[1100px] px-6">
             <div className="mb-10">
               <h2 className="font-display gold-text text-4xl md:text-6xl">
@@ -275,12 +295,17 @@ export function App() {
               <p className="mt-3 text-[1rem] leading-8 text-[#A39A94]">{copy.services.description[lang]}</p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="service-grid grid gap-6 md:grid-cols-3">
               {copy.services.items.map((service) => (
-                <article key={service.alt} className="glass-card p-4">
-                  <img src={service.image} alt={service.alt} className="h-[360px] w-full object-cover" />
-                  <h3 className="mt-5 font-display text-4xl leading-none text-[#E5C483]">{service.title[lang]}</h3>
-                  <p className="soft-text mt-3 text-[0.98rem] leading-8">{service.description[lang]}</p>
+                <article key={service.alt} className="service-card glass-card p-4">
+                  <img src={service.image} alt={service.alt} className="service-card__image h-[360px] w-full object-cover" />
+                  <div className="service-card__body">
+                    <h3 className="font-display text-4xl leading-none text-[#E5C483]">{service.title[lang]}</h3>
+                    <p className="soft-text text-[0.98rem] leading-8">{service.description[lang]}</p>
+                    <button onClick={openBooking} className="service-card__button secondary-button font-bold tracking-[0.14em]">
+                      {heroCtas[0]}
+                    </button>
+                  </div>
                 </article>
               ))}
             </div>
@@ -288,14 +313,14 @@ export function App() {
         </section>
 
         {/* Workshops & Masterclasses Section */}
-        <section id="workshops" className="border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
+        <section id="workshops" className="content-section border-t border-[#C2954C]/20 bg-[#0D0B0A] py-20">
           <div className="mx-auto grid max-w-[1100px] gap-10 px-6 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="font-display text-4xl text-[#E5C483] md:text-6xl">
                 {workshopsTitle}
               </h2>
               <div className="gold-divider mt-3" />
-              <p className="soft-text mt-6 max-w-xl text-[1rem] font-light leading-8 md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
+              <p className="mobile-readable soft-text mt-6 max-w-xl text-[1rem] font-light leading-8 md:text-[1.05rem]">{copy.workshops.body[lang]}</p>
               <ul className="workshop-list mt-6">
                 {copy.workshops.formats[lang].map((item) => (
                   <li key={item}>{item}</li>
@@ -339,10 +364,19 @@ export function App() {
         </div>
       </footer>
 
+      <div className="mobile-action-bar xl:hidden" aria-label="Quick actions">
+        <button onClick={openBooking} className="primary-button mobile-action-bar__primary font-bold">
+          {heroCtas[0]}
+        </button>
+        <button onClick={() => scrollToSection('classes')} className="mobile-action-bar__secondary secondary-button font-bold">
+          {heroCtas[1]}
+        </button>
+      </div>
+
       {/* Booking Modal */}
       {bookingOpen ? (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
-          <div className="glass-card relative w-full max-w-md p-8">
+        <div className="booking-overlay fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm">
+          <div className="booking-card glass-card relative w-full max-w-md p-8">
             <button className="absolute right-4 top-4 text-2xl text-[#C2954C] hover:text-[#E5E5E5]" onClick={closeBooking} aria-label="Close Booking Modal">
               ×
             </button>
@@ -392,7 +426,8 @@ export function App() {
                     />
                     {errors.message ? <p className="mt-1 text-xs font-bold tracking-tighter text-red-500">{errors.message}</p> : null}
                   </div>
-                  <button type="submit" className="primary-button w-full py-4 font-bold tracking-[0.18em] transition">                    {heroCtas[0]}
+                  <button type="submit" className="primary-button w-full py-4 font-bold tracking-[0.18em] transition">
+                    {heroCtas[0]}
                   </button>
                 </form>
               </>

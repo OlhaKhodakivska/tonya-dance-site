@@ -140,6 +140,10 @@
   object-position: center 60%;
 }
 
+.hero-title__part {
+  display: inline;
+}
+
 .primary-button {
   border: 1px solid rgba(255, 240, 194, 0.72);
   border-radius: 5px;
@@ -224,6 +228,75 @@
   background: rgba(15, 12, 11, 0.6);
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
   backdrop-filter: blur(10px);
+}
+
+.service-grid {
+  align-items: stretch;
+}
+
+.service-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.service-card__image {
+  flex: 0 0 auto;
+  border-radius: 4px;
+}
+
+.service-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 1.25rem;
+}
+
+.service-card__body h3 {
+  min-height: 2.15em;
+}
+
+.service-card__body p {
+  flex: 1;
+  margin-top: 0.85rem;
+  text-wrap: pretty;
+}
+
+.service-card__button {
+  display: inline-grid;
+  width: 100%;
+  min-height: 3.15rem;
+  place-items: center;
+  padding: 0.85rem 1rem;
+  margin-top: auto;
+  border-color: rgba(255, 240, 194, 0.5);
+  background:
+    linear-gradient(180deg, rgba(229, 196, 131, 0.16), rgba(194, 149, 76, 0.04)),
+    rgba(5, 4, 3, 0.52);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 26px rgba(0, 0, 0, 0.24);
+  color: #f2d899;
+  font-size: 0.76rem;
+  line-height: 1.2;
+  text-align: center;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.service-card__button:hover,
+.service-card__button:focus-visible {
+  border-color: rgba(255, 240, 194, 0.78);
+  color: #fff0c2;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 24px rgba(229, 196, 131, 0.2);
+  transform: translateY(-1px);
 }
 
 .workshop-list {
@@ -437,17 +510,373 @@
   animation: fadeIn 0.6s ease-out forwards;
 }
 
-/* Mobile View */
-@media (max-width: 640px) {
-  .workshop-image-frame {
-    min-height: 300px;
+@media (max-width: 1199px) {
+  html {
+    scroll-padding-top: 86px;
   }
 
-  .workshop-image {
-    min-height: 300px;
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .site-shell {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+    overflow-x: clip;
+  }
+
+  .site-shell::before {
+    opacity: 0.08;
+  }
+
+  .app-header {
+    right: auto;
+    left: 0;
+    width: 100dvw;
+    max-width: 100dvw;
+    padding-top: calc(0.5rem + env(safe-area-inset-top));
+    padding-bottom: 0.5rem;
+    background: rgba(13, 11, 10, 0.86);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+  }
+
+  .brand-logo {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .app-header .container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .menu-trigger {
+    display: inline-grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    padding: 0.78rem;
+    border: 1px solid rgba(229, 196, 131, 0.34);
+    border-radius: 8px;
+    background: rgba(15, 12, 11, 0.7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .menu-trigger span {
+    display: block;
+    width: 1.2rem;
+    height: 1px;
+    background: #e5c483;
+    box-shadow: 0 0 10px rgba(229, 196, 131, 0.34);
+  }
+
+  .mobile-menu {
+    background:
+      linear-gradient(180deg, rgba(13, 11, 10, 0.88), #050403 74%),
+      url('/tonya-dance-site/images/bg.png') center / cover no-repeat;
+  }
+
+  .mobile-menu__top {
+    min-height: calc(5.25rem + env(safe-area-inset-top));
+    padding-top: calc(1.25rem + env(safe-area-inset-top));
+    border-bottom: 1px solid rgba(194, 149, 76, 0.24);
+  }
+
+  .mobile-menu__close {
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(229, 196, 131, 0.28);
+    border-radius: 8px;
+    line-height: 1;
+  }
+
+  .mobile-menu__nav {
+    gap: 1rem;
+    width: min(100%, 520px);
+    padding: 1.4rem 1.5rem calc(7.5rem + env(safe-area-inset-bottom));
+    margin: 0 auto;
+  }
+
+  .mobile-menu__link {
+    display: flex;
+    align-items: center;
+    min-height: 4.2rem;
+    padding: 0 0.25rem;
+    border-bottom: 1px solid rgba(194, 149, 76, 0.22);
+    font-size: clamp(2.35rem, 8vw, 4rem);
+    line-height: 1;
+  }
+
+  .mobile-menu__language {
+    justify-content: center;
+    padding-top: 1rem;
+  }
+
+  .mobile-menu__cta {
+    width: 100%;
+    min-height: 3.75rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .site-main-background {
+    background:
+      linear-gradient(180deg, rgba(13, 11, 10, 0.2), rgba(5, 4, 3, 0.42)),
+      url('/tonya-dance-site/images/bg.png') center top / 1300px auto repeat-y,
+      linear-gradient(180deg, #0d0b0a 0%, #050403 100%);
+  }
+
+  .hero-section {
+    align-items: flex-end;
+    justify-content: center;
+    min-height: min(820px, 100svh);
+    padding: 7rem 0 calc(7.25rem + env(safe-area-inset-bottom));
   }
 
   .hero-video {
-  object-position: center 50%;
+    object-position: center 52%;
+  }
+
+  .hero-section::after {
+    position: absolute;
+    inset: auto 1rem calc(5.75rem + env(safe-area-inset-bottom)) 1rem;
+    z-index: 3;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, rgba(229, 196, 131, 0.42), transparent);
+  }
+
+  .hero-content {
+    width: min(100%, 760px);
+    max-width: 100dvw;
+    overflow: hidden;
+  }
+
+  .hero-title {
+    max-width: 11ch;
+    margin-bottom: 1rem;
+    font-size: clamp(3.15rem, 13vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .hero-subhead {
+    max-width: 34rem;
+    font-size: clamp(0.98rem, 3.3vw, 1.2rem);
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: none;
+  }
+
+  .content-section {
+    padding-top: 4.25rem;
+    padding-bottom: 4.25rem;
+  }
+
+  .about-image {
+    max-height: 560px;
+    aspect-ratio: 4 / 5;
+    object-position: center top;
+  }
+
+  .about-intro {
+    font-size: clamp(2.25rem, 7vw, 3.65rem);
+  }
+
+  .mobile-readable {
+    line-height: 1.85;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 36%) 1fr;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 0.75rem;
+  }
+
+  .service-card__image {
+    height: 100%;
+    min-height: 13.75rem;
+    border-radius: 4px;
+    object-position: center top;
+  }
+
+  .service-card__body {
+    display: flex;
+    height: 100%;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0;
+  }
+
+  .service-card__body h3 {
+    min-height: 0;
+    margin-top: 0;
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .service-card__body p {
+    flex: 1;
+    margin-top: 0.65rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .service-card__button {
+    width: 100%;
+    min-height: 2.55rem;
+    padding: 0.65rem 0.9rem;
+    margin-top: auto;
+    font-size: 0.72rem;
+  }
+
+  .workshop-image-frame,
+  .workshop-image {
+    min-height: 380px;
+  }
+
+  .workshop-image {
+    object-position: center top;
+  }
+
+  .site-footer {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom));
+  }
+
+  .mobile-action-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100dvw;
+    max-width: 100dvw;
+    z-index: 80;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 0.55rem;
+    padding: 0.75rem 0.9rem calc(0.75rem + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(229, 196, 131, 0.28);
+    background: rgba(13, 11, 10, 0.9);
+    box-shadow: 0 -18px 42px rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(14px);
+  }
+
+  .mobile-action-bar__primary,
+  .mobile-action-bar__secondary {
+    display: grid;
+    min-width: 0;
+    min-height: 3.25rem;
+    place-items: center;
+    padding: 0.75rem;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    text-align: center;
+    letter-spacing: 0.08em;
+  }
+
+  .booking-overlay {
+    align-items: flex-end;
+    padding: 0.75rem;
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  }
+
+  .booking-card {
+    max-height: calc(100svh - 1.5rem - env(safe-area-inset-top));
+    overflow-y: auto;
+    padding: 1.5rem;
+    border-radius: 12px 12px 8px 8px;
+  }
 }
+
+/* Mobile View */
+@media (max-width: 640px) {
+  .brand-logo {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .hero-section {
+    min-height: 100svh;
+    padding-top: 6rem;
+  }
+
+  .hero-title {
+    max-width: 100%;
+    font-size: clamp(2.75rem, 11.2vw, 3.15rem);
+    line-height: 0.96;
+  }
+
+  .hero-title__part {
+    display: block;
+  }
+
+  .hero-subhead {
+    max-width: 21rem;
+  }
+
+  .mobile-action-bar {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.86fr);
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .mobile-action-bar__primary,
+  .mobile-action-bar__secondary {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+  }
+
+  .content-section {
+    padding-top: 3.25rem;
+    padding-bottom: 3.25rem;
+  }
+
+  .service-card {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .service-card__image {
+    height: clamp(21rem, 92vw, 28rem);
+    min-height: clamp(21rem, 92vw, 28rem);
+    object-position: center top;
+  }
+
+  .service-card:nth-child(1) .service-card__image,
+  .service-card:nth-child(2) .service-card__image {
+    object-position: center bottom;
+  }
+
+  .service-card:nth-child(2) .service-card__image {
+    object-position: center 78%;
+  }
+
+  .service-card__button {
+    width: 100%;
+  }
+
+  .workshop-image-frame {
+    min-height: clamp(25rem, 105vw, 32rem);
+  }
+
+  .workshop-image {
+    min-height: clamp(25rem, 105vw, 32rem);
+    object-position: center top;
+  }
+
+  .about-image {
+    min-height: clamp(27rem, 112vw, 34rem);
+    max-height: none;
+    aspect-ratio: 3 / 4;
+    object-position: center bottom;
+  }
+
+  .hero-video {
+    object-position: center 50%;
+  }
 }
