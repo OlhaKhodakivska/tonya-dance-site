@@ -40,7 +40,7 @@ export type Content = {
 
 export const contactEmail = 'tonya.musemotion@gmail.com';
 export const instagramUrl = 'https://www.instagram.com/tonya.musemotion/';
-export const heroVideo = './videos/website-start.mov';
+export const heroVideo = './videos/website-start.mp4';
 
 export const landingContent: Content = {
   nav: {
