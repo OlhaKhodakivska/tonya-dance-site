@@ -753,8 +753,10 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100dvw;
-    max-width: 100dvw;
+    right: 0;
+    box-sizing: border-box;
+    width: auto;
+    max-width: none;
     z-index: 80;
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -801,8 +803,17 @@
   }
 
   .hero-section {
+    align-items: flex-start;
     min-height: 100svh;
-    padding-top: 6rem;
+    padding: clamp(6rem, 16svh, 8.5rem) 0 calc(5.25rem + env(safe-area-inset-bottom));
+  }
+
+  .hero-content {
+    box-sizing: border-box;
+    max-width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow: visible;
   }
 
   .hero-title {
@@ -816,7 +827,8 @@
   }
 
   .hero-subhead {
-    max-width: 21rem;
+    max-width: min(18.5rem, 100%);
+    font-size: 0.96rem;
   }
 
   .mobile-action-bar {
@@ -877,6 +889,6 @@
   }
 
   .hero-video {
-    object-position: center 50%;
+    object-position: center 28%;
   }
 }
