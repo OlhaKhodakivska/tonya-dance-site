@@ -49,12 +49,12 @@ export const landingContent: Content = {
   },
   hero: {
     heading: {
-      en: ['Strength.', 'Flexibility.', 'Confidence.'],
-      ua: ['Сила.', 'Гнучкість.', 'Жіночність.'],
+      en: ['Dance', 'Artist and', 'Coach'],
+      ua: ['Танцювальна', 'артистка та', 'тренерка'],
     },
     subhead: {
-      en: 'Professional stretching & pole dance coach. Build a strong, flexible and confident body through precise technique, control and refined movement.',
-      ua: 'Професійна тренерка зі стретчингу та pole dance. Трансформація твого тіла через техніку, контроль і естетику руху.',
+      en: 'Build a strong, flexible and confident body through precise technique, control and refined movement.',
+      ua: 'Побудуй сильне, гнучке та впевнене тіло завдяки точній техніці, контролю й витонченому руху.',
     },
     ctas: {
       en: ['Book a Session', 'Explore Training'],
@@ -67,8 +67,8 @@ export const landingContent: Content = {
       ua: 'Про мене',
     },
     intro: {
-      en: 'I’m Tonya, a professional stretching and pole dance coach.',
-      ua: 'Я — Тоня, професійна тренерка зі стретчингу та pole dance.',
+      en: "I'm Tonya, movement artist and professional personal dance & pole coach for adults.",
+      ua: 'Я — Тоня, артистка руху та професійна персональна тренерка з танців і pole dance для дорослих.',
     },
     body: {
       en: 'I help women build strength, flexibility and confidence through structured, technique-driven training. My approach combines precision, aesthetics and a calm, supportive environment.',
@@ -81,36 +81,36 @@ export const landingContent: Content = {
       ua: 'Заняття в студії',
     },
     description: {
-      en: 'Stretching · Pole Dance · Exotic',
-      ua: 'Стретчинг · Pole Dance · Exotic',
+      en: 'Event Shows · Workshops · Private Classes',
+      ua: 'Шоу для подій · Воркшопи · Індивідуальні заняття',
     },
     items: [
       {
-        title: { en: 'Stretching', ua: 'Stretching' },
+        title: { en: 'Event Shows', ua: 'Шоу для подій' },
         description: {
-          en: 'Structured sessions to increase mobility, strength and recovery.',
-          ua: 'Спеціально розроблені тренування для підвищення рухливості, сили та прискорення відновлення.',
-        },
-        image: './images/stretching.jpg',
-        alt: 'Stretching',
-      },
-      {
-        title: { en: 'Pole Dance', ua: 'Pole Dance' },
-        description: {
-          en: 'Technique-based pole classes for graceful movement and control.',
-          ua: 'Заняття з пілону, орієнтовані на техніку, для витончених рухів та контролю.',
-        },
-        image: './images/pole_dance.jpg',
-        alt: 'Pole dance',
-      },
-      {
-        title: { en: 'Exotic Pole', ua: 'Exotic Pole' },
-        description: {
-          en: 'Expressive sensual movement with elegant lines and strong choreography.',
-          ua: 'Виразні чуттєві рухи з витонченими лініями та потужною хореографією.',
+          en: 'Elegant, expressive dance and pole performances tailored to your event.',
+          ua: 'Елегантні й виразні танцювальні та pole-виступи, створені спеціально для вашої події.',
         },
         image: './images/exotic.jpg',
-        alt: 'Exotic pole',
+        alt: 'Event dance show',
+      },
+      {
+        title: { en: 'Workshops', ua: 'Воркшопи' },
+        description: {
+          en: 'Technique-focused group workshops with signature choreography and a structured approach.',
+          ua: 'Групові воркшопи з акцентом на техніку, авторську хореографію та структурований підхід.',
+        },
+        image: './images/pole_dance.jpg',
+        alt: 'Dance workshop',
+      },
+      {
+        title: { en: 'Private Classes', ua: 'Індивідуальні заняття' },
+        description: {
+          en: 'Personal training built around your goals, level and preferred movement style.',
+          ua: 'Персональні тренування, побудовані навколо ваших цілей, рівня та бажаного стилю руху.',
+        },
+        image: './images/stretching.jpg',
+        alt: 'Private dance class',
       },
     ],
   },

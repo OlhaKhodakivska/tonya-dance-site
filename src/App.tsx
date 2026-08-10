@@ -11,7 +11,9 @@ const LANGUAGE_LABELS: Record<Lang, string> = {
   ua: 'Ua',
 };
 
-type BookingState = 'idle' | 'success';
+const WEB3FORMS_ACCESS_KEY = '0baa075e-e905-4003-b04d-6a9773e0dc58';
+
+type BookingState = 'idle' | 'success' | 'error';
 
 type FormState = {
   name: string;
@@ -26,13 +28,11 @@ function scrollToSection(id: string) {
 }
 
 export function App() {
-  const [lang, setLang] = useState<Lang>(() => {
-    const stored = window.localStorage.getItem('tonya-lang');
-    return stored === 'ua' ? 'ua' : 'en';
-  });
+  const [lang, setLang] = useState<Lang>('en');
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [bookingState, setBookingState] = useState<BookingState>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [errors, setErrors] = useState<Partial<FormState>>({});
 
@@ -40,9 +40,15 @@ export function App() {
   const isUkrainian = lang === 'ua';
 
   useEffect(() => {
-    window.localStorage.setItem('tonya-lang', lang);
     document.documentElement.lang = isUkrainian ? 'uk' : 'en';
   }, [isUkrainian, lang]);
+
+  useEffect(() => {
+    if (bookingState !== 'success') return;
+
+    const timer = window.setTimeout(() => setBookingState('idle'), 6000);
+    return () => window.clearTimeout(timer);
+  }, [bookingState]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen || bookingOpen ? 'hidden' : '';
@@ -95,17 +101,43 @@ export function App() {
     return Object.keys(nextErrors).length === 0;
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!validate()) return;
 
-    const subject = encodeURIComponent(`New Booking from ${form.name}`);
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nMessage: ${form.message}`);
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    setBookingState('success');
+    setIsSubmitting(true);
+    setBookingState('idle');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New Booking from ${form.name}`,
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Web3Forms submission failed');
+      }
+
+      setForm(EMPTY_FORM);
+      setErrors({});
+      setBookingState('success');
+    } catch (error) {
+      console.error('Contact form submission error:', error);
+      setBookingState('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
-  const languageOrder: Lang[] = ['ua', 'en'];
+  const languageOrder: Lang[] = ['en', 'ua'];
 
   return (
     <div className="site-shell min-h-screen bg-[#0D0B0A] text-[#E5E5E5] antialiased">
@@ -396,12 +428,20 @@ export function App() {
                 <h2 className="font-display gold-text mb-6 text-4xl leading-none">
                   {heroCtas[0]}
                 </h2>
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                <form
+                  className="space-y-4"
+                  action="https://api.web3forms.com/submit"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                >
+                  <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
                   <div>
                     <input
                       value={form.name}
                       onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
                       type="text"
+                      name="name"
+                      required
                       placeholder={isUkrainian ? 'Ваше Ім’я' : 'Your Name'}
                       className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
@@ -412,6 +452,8 @@ export function App() {
                       value={form.email}
                       onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
                       type="email"
+                      name="email"
+                      required
                       placeholder={isUkrainian ? 'Ваш Email' : 'Your Email'}
                       className="w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
@@ -422,12 +464,27 @@ export function App() {
                       value={form.message}
                       onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
                       placeholder={isUkrainian ? 'Ваше Повідомлення' : 'Message'}
+                      name="message"
+                      required
                       className="h-28 w-full rounded-[5px] border border-[#C2954C]/35 bg-[#0D0B0A] p-3 text-[#E5E5E5] outline-none transition placeholder:text-[#A39A94] focus:border-[#E5C483]"
                     />
                     {errors.message ? <p className="mt-1 text-xs font-bold tracking-tighter text-red-500">{errors.message}</p> : null}
                   </div>
-                  <button type="submit" className="primary-button w-full py-4 font-bold tracking-[0.18em] transition">
-                    {heroCtas[0]}
+                  {bookingState === 'error' ? (
+                    <p className="text-sm text-red-400" role="status">
+                      {isUkrainian
+                        ? 'Не вдалося надіслати повідомлення. Спробуйте ще раз.'
+                        : 'The message could not be sent. Please try again.'}
+                    </p>
+                  ) : null}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="primary-button w-full py-4 font-bold tracking-[0.18em] transition disabled:cursor-wait disabled:opacity-60"
+                  >
+                    {isSubmitting
+                      ? isUkrainian ? 'Надсилання…' : 'Sending…'
+                      : heroCtas[0]}
                   </button>
                 </form>
               </>
